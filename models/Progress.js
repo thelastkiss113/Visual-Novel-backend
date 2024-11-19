@@ -1,3 +1,4 @@
+//backend/models/Progress.js
 const mongoose = require('mongoose');
 
 const progressSchema = new mongoose.Schema({

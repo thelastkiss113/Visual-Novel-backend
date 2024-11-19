@@ -1,4 +1,4 @@
-//controllers/playerController.js
+//backend/controllers/playerController.js
 //Handles player-related operations, such as creating a new player or updating their progress.
 const Player = require('../models/Player');
 

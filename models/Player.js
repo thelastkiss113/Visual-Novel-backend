@@ -1,4 +1,4 @@
-//models/Player.js
+//backend/models/Player.js
 //Defines the Player model, which represents a player in the game.
 const mongoose = require('mongoose');
 

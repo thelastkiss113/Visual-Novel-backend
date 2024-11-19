@@ -1,4 +1,4 @@
-//models/Node.js
+//backend/models/Node.js
 //Defines the Node model, which represents a node in the game.
 const mongoose = require('mongoose');
 

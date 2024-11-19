@@ -1,2 +1,2 @@
-//index.js
+//backend/index.js
 require('./server');

@@ -1,26 +1,39 @@
-//controllers/progressController.js
+//backend/controllers/progressController.js
 //Handles progress-related operations, such as saving player progress.
 
-const Player = require('../models/Player');
+const Progress = require('../models/Progress');
 
-// Update player progress (e.g., current node, lives remaining)
-const updateProgress = async (req, res) => {
+// Save game progress
+exports.saveProgress = async (req, res) => {
   try {
-    const { playerId, nodeId, lives } = req.body;
+    const { playerId, gameData } = req.body;
+    let progress = await Progress.findOne({ playerId });
 
-    const player = await Player.findById(playerId);
-    if (!player) return res.status(404).json({ message: 'Player not found' });
+    if (progress) {
+      progress.gameData = gameData; // Update existing progress
+    } else {
+      progress = new Progress({ playerId, gameData }); // Create new progress
+    }
 
-    player.currentNode = nodeId;
-    player.lives = lives;
-
-    await player.save();
-    res.json(player);
-  } catch (error) {
-    res.status(500).json({ message: error.message });
+    await progress.save();
+    res.status(201).json({ message: 'Game progress saved successfully!' });
+  } catch (err) {
+    res.status(500).json({ error: err.message });
   }
 };
 
-module.exports = { updateProgress };
+// Load game progress
+exports.loadProgress = async (req, res) => {
+  try {
+    const { playerId } = req.params;
+    const progress = await Progress.findOne({ playerId });
 
+    if (!progress) {
+      return res.status(404).json({ message: 'No progress found for this player.' });
+    }
 
+    res.json(progress.gameData);
+  } catch (err) {
+    res.status(500).json({ error: err.message });
+  }
+};

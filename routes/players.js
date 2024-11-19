@@ -1,4 +1,4 @@
-// routes/players.js
+// backend/routes/players.js
 // Handles player-related routes, such as creating a new player or fetching all players.
 
 const express = require('express');
