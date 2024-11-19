@@ -2,7 +2,7 @@
 //Handles player-related operations, such as creating a new player or updating their progress.
 const Player = require('../models/Player');
 
-// Create a new player
+// C:(Create) Create a new player
 const createPlayer = async (req, res) => {
   try {
     const player = new Player({

@@ -18,7 +18,7 @@ const playerSchema = new mongoose.Schema({
     default: 1
   }
 }, {
-  collection: 'visual_novel'  // Ensure the collection name matches what you have in MongoDB
+  collection: 'visual_novel'  // My MongoDB collection in Cluster0 || database: visual_novel/game-data
 });
 
 // Create a model for the player
