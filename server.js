@@ -9,6 +9,7 @@ const playerRoutes = require('./routes/players');
 const progressRoutes = require('./routes/progress');
 
 dotenv.config();
+
 connectDB();
 
 const app = express();

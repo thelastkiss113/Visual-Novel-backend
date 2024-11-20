@@ -11,14 +11,15 @@ const playerSchema = new mongoose.Schema({
   email: {
     type: String,
     required: true,
-    unique: true
   },
   level: {
     type: Number,
     default: 1
-  }
+  },
+  lives: { type: Number, default: 9 }
+
 }, {
-  collection: 'visual_novel'  // My MongoDB collection in Cluster0 || database: visual_novel/game-data
+  collection: 'players'  // My MongoDB collection in Cluster0 ||database: visual_novel || collection: players
 });
 
 // Create a model for the player

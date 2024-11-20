@@ -1,19 +1,20 @@
 // backend/routes/players.js
-// Handles player-related routes, such as creating a new player or fetching all players.
+// Handles player-related routes
 
 const express = require('express');
-const Player = require('../models/Player');  // Import the Player model
-
 const router = express.Router();
+const Player = require('../models/Player'); // Import the Player model
 
 // POST route to create a new player
 router.post('/', async (req, res) => {
   try {
-    const { name, email, level } = req.body;
-    const newPlayer = new Player({ name, email, level });
+    const { name, email, level, lives } = req.body;
 
+    // Create and save a new player
+    const newPlayer = new Player({ name, email, level, lives });
     await newPlayer.save();
-    res.status(201).json(newPlayer);  // Return the newly created player
+
+    res.status(201).json(newPlayer); // Respond with the newly created player
   } catch (error) {
     console.error(error);
     res.status(500).json({ message: 'Error creating player' });
@@ -23,8 +24,8 @@ router.post('/', async (req, res) => {
 // GET route to fetch all players
 router.get('/', async (req, res) => {
   try {
-    const players = await Player.find();  // Fetch all players from the database
-    res.status(200).json(players);  // Return the players array
+    const players = await Player.find(); // Fetch all players from the database
+    res.status(200).json(players); // Return the players array
   } catch (error) {
     console.error(error);
     res.status(500).json({ message: 'Error fetching players' });
@@ -34,11 +35,16 @@ router.get('/', async (req, res) => {
 // GET route to fetch a single player by ID
 router.get('/:id', async (req, res) => {
   try {
-    const player = await Player.findById(req.params.id);  // Find the player by ID
+    const id = req.params.id; // Extract the ID from the request parameters
+
+    // Find the player by ID
+    const player = await Player.findById(id); 
+    console.log("Fetched player:", player); // Add a console log for debugging
+
     if (!player) {
       return res.status(404).json({ message: 'Player not found' });
     }
-    res.status(200).json(player);  // Return the player data
+    res.status(200).json(player); // Return the player data
   } catch (error) {
     console.error(error);
     res.status(500).json({ message: 'Error fetching player' });

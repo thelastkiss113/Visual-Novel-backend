@@ -1,9 +1,6 @@
 //backend/routes/progress.js
 //Handles progress-related routes, such as saving player progress.
-// routes/progress.js
-// Import required modules
-// Import required modules
-// Import required modules
+
 const express = require('express'); // Framework for creating API routes
 const router = express.Router(); // Create a new router instance
 const Progress = require('../models/Progress'); // Mongoose model for progress data
